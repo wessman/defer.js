@@ -186,10 +186,11 @@
 				text-align:	left;
 			}
 		</style>
+		<script type="text/javascript" async="async" src="https://raw.github.com/wessman/deferjs/master/build/defer.min.js"></script>
 	</head>
 	<body>
 		<div class="intro-text">
-			Only the defer.js test relies on defer.js. All external scripts (defer.js & jQuery.js) are loaded at the end of the &lt;body&gt; tag, synchronously.
+			Only the defer.js test relies on defer.js, which is loaded asynchronously. jQuery is loaded at the end of the &lt;body&gt; tag, synchronously.
 			<br />
 			All CSS & images are in-page HTML.
 		</div>
@@ -251,37 +252,26 @@
 	
 		<div class="loading-box" id="jquery-box">
 			<span class="loading-box-text">jQuery</span>
-			<script type="text/javascript">
-				window.defer = window.defer || [];
-				
-				window.defer.push({
-					p: function(){
-						var isNil = window.defer.isNil;
-						/* run as soon as testloader is ready & jQuery has been loaded */
-						return !isNil( window.testloader ) && !isNil( window.jQuery );
-					} ,
-					h: function(){
-						var order = window.testloader.registerLoaded( "jquery-box" );
-						
-						var box = jQuery("#jquery-box");
-						
-						var trophyElement = jQuery( "<span class=\"loading-box-trophy\"></span>" );
-						trophyElement.text( ""+order );
-						
-						var timeElement = jQuery( "<span class=\"loading-box-time\"></span>" );
-						timeElement.text( window.testloader.timer.secondsSinceStartText() );
-						
-						box.append( trophyElement ).append( timeElement );
-						
-					} ,
-					o: {}
-				});
-			</script>
 		</div>
 		
 		<a href="test1.html" class="test-link">&#8592; deferred</a>
 		
-		<script type="text/javascript" src="https://raw.github.com/wessman/deferjs/master/build/defer.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			jQuery.ready( function(){
+
+					var order = window.testloader.registerLoaded( "jquery-box" );
+					
+					var box = jQuery("#jquery-box");
+					
+					var trophyElement = jQuery( "<span class=\"loading-box-trophy\"></span>" );
+					trophyElement.text( ""+order );
+					
+					var timeElement = jQuery( "<span class=\"loading-box-time\"></span>" );
+					timeElement.text( window.testloader.timer.secondsSinceStartText() );
+					
+					box.append( trophyElement ).append( timeElement );
+			} );
+		</script>
 	</body>
 </html>
