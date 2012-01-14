@@ -131,7 +131,7 @@ defer.js uses a few small helper functions, which have been externalized for you
 <dd>Test if the first parameter is a usable function. Returns <code>false</code> if not.</dd>
 <dt><code>defer.forOwnIn( context , dictionary , handler )</code><dt>
 <dd>Use this for testing every property on a custom dictionary/hash object without typing the whole <code>hasOwnProperty</code> stuff. The <code>context</code> is <code>this</code>, and <code>dictionary</code> is your object. The function you pass to <code>handler</code> has two parameters, <code>key</code> and <code>value</code>. Example:
-<code>
+<pre><code>
     defer.forOwnIn( 
         this ,                                                // context
         { 'key1' : 'val1' , 'key2' : 'val2' } ,       // dictionary
@@ -139,7 +139,7 @@ defer.js uses a few small helper functions, which have been externalized for you
             defer.log( key + "=" + value );
         }
     );
-</code>
+</code></pre>
 </dd>
 <dt><code>defer.appendScript( src , async )</code><dt>
 <dd>If you want to load code asynchronously, in code, use this. It simply attaches a <code>&lt;script&gt;</code> tag to the end of the page's body. The <code>async</code> parameter accepts either <code>async</code> or <code>defer</code>.</dd>
