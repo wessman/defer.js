@@ -155,7 +155,7 @@ defer.js uses a few small helper functions, which have been externalized for you
 
 ## License, Copyright  &amp; Trademark ##
 
-defer.js is made available under the Apache 2.0 License.
+defer.js is made available under the Apache License, Version 2.0.
 
 All code in this repository is copyright 2011-2012 Ian J. Wessman.
 
