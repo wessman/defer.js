@@ -5,6 +5,8 @@
 
 /** @license
  *  
+ * "defer.js" is a trademark of Ian J. Wessman
+ *  
  *  Copyright 2011-2012 Ian J. Wessman
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,7 +54,7 @@ var deferErrors =
 		@const 
 		@type {boolean}
 	*/
-	var _debug = YES;
+	var _debug = NO;
 	
 	/**
 		@const 
