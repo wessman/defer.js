@@ -179,11 +179,16 @@
 			A.test-link:visited ,
 			A.test-link:active
 			{
-				display:	block;
 				text-decoration: underline;
 				color:		#e0e0e0;
 				margin:		10px 40px 0 40px;
 				text-align:	left;
+			}
+			
+			.tm
+			{
+				font-size: 70%;
+				margin:		10px 40px 0 40px;
 			}
 		</style>
 	</head>
@@ -191,7 +196,7 @@
 		<div class="intro-text">
 			Only the defer.js test relies on defer.js, which is loaded asynchronously. jQuery is loaded at the end of the &lt;body&gt; tag, synchronously.
 			<br />
-			All CSS & images are in-page HTML.
+			All CSS & images are linked by HTML, not scripts.
 		</div>
 		
 		<div class="loading-box" id="defer-box">
@@ -253,7 +258,11 @@
 			<span class="loading-box-text">jQuery</span>
 		</div>
 		
-		<a href="test1.html" class="test-link">&#8592; deferred</a>
+		
+		<a href="test1.html" class="test-link">&#8592; previous</a>
+		<a href="test3.html" class="test-link">next &#8594;</a>
+		
+		<div class="tm">"defer.js" and the defer.js logo are trademarks of Ian J. Wessman</div>
 		
 		
 		<script type="text/javascript" src="defer.min.js"></script>

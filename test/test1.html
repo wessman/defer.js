@@ -180,11 +180,16 @@
 			A.test-link:visited ,
 			A.test-link:active
 			{
-				display:	block;
+				display:	inline;
 				text-decoration: underline;
 				color:		#e0e0e0;
 				margin:		10px 40px 0 40px;
-				text-align:	right;
+			}
+			
+			.tm
+			{
+				font-size: 70%;
+				margin:		10px 40px 0 40px;
 			}
 		</style>
 		<script type="text/javascript" async="async" src="defer.min.js"></script>
@@ -194,7 +199,7 @@
 		<div class="intro-text">
 			All external scripts (defer.js & jQuery.js) are loaded at the end of the &lt;head&gt; tag, asynchronously, thanks to defer.js.
 			<br />
-			All CSS & images are in-page HTML.
+			All CSS & images are linked by HTML, not scripts.
 		</div>
 		<div class="loading-box" id="defer-box">
 			<span class="loading-box-text">defer.js</span>
@@ -276,12 +281,20 @@
 						box.append( trophyElement ).append( timeElement );
 						
 					} ,
-					o: {}
+					o: {
+						timeout:30000 ,
+						onFail: function(){
+								alert("jQuery failed to load within 30 seconds");						
+							}	
+						}
 				});
 			</script>
 		</div>
 		
-		<a href="test2.html" class="test-link">not-deferred &#8594;</a>
+		<a href="test0.html" class="test-link">&#8592; previous</a>
+		<a href="test2.html" class="test-link">next &#8594;</a>
+		
+		<div class="tm">"defer.js" and the defer.js logo are trademarks of Ian J. Wessman</div>
 		
 	</body>
 </html>
