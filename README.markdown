@@ -80,7 +80,13 @@ One of the hazards in asynchronous script loading is creating a race condition. 
 
 As long as your predicate logic is sound, you'll never run afoul of an async-based race condition.
 
-Async Everything!
+## Compatibility? ##
+
+Yes.
+
+If it's a browser, it'll work. defer.js has been tested on every browser I can get my mitts on, even those that don't support asynchronous loading of JS. In those cases, it does no harm.
+
+That said, I assume no liability for the use of defer.js. Read the license for more details.
 
 ## Try it out ##
 
