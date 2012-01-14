@@ -50,7 +50,7 @@ The first draft of defer.js was all about predicates. Then, I realized we could 
 
 More or less, yes.
 
-defer.js uses a single global variable for everything: window.defer. If this code has been loaded, you can use it just as in the example above. If not, you can still use it right now.
+defer.js uses a single global variable for everything: <code>window.defer</code>. If this code has been loaded, you can use it just as in the example above. If not, you can still use it right now.
 
 defer.js uses a variant on the abuse-an-array idea, but to a higher degree. Once defer.js loads, it runs all the things you've put into the array, *then it becomes the array*.
 
@@ -85,6 +85,8 @@ Async Everything!
 ## Try it out ##
 
 Want to see it in action, against loading an image and jQuery? [Test defer.js now!](http://wessman.github.com/deferjs/test/test0.html)
+
+Pay special attention to the image load time &amp; order.
 
 Judiciously clearing your cache, along with manipulating your connection (I use Network Link Conditioner) will give you a more complete picture of defer.js's performance.
 
