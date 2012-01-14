@@ -66,13 +66,13 @@ defer.js uses a variant on the abuse-an-array idea, but to a higher degree. Once
 
 Yes, that totally works.
 
-Note that we use `window.defer` instead of simply `defer`, since this works better inside of closures, and in certain browsers.
+Note that we use <code>window.defer</code> instead of simply <code>defer</code>, since this works better inside of closures, and in certain browsers.
 
 Also note the use of single-character shorthands for predicate, handler, and options. You're welcome.
 
 ## Are you ready? ##
 
-defer.js sure is. It loads code as soon as the DOM is manipulable, much like jQuery's `$.ready()`.
+defer.js sure is. It loads code as soon as the DOM is manipulable, much like jQuery's <code>$.ready()</code>.
 
 ## Race Conditions? You Win! ##
 
@@ -91,15 +91,15 @@ Judiciously clearing your cache, along with manipulating your connection (I use 
 ## Methods ##
 
 <dl>
-<dt>`defer( {p:... , h:... , o:...} )`</dt>
+<dt><code>defer( {p:... , h:... , o:...} )</code></dt>
 <dd>Use this to create a new item to defer. Returns a unique sequence ID number.</dd>
-<dt>`defer.push( {p:... , h:... , o:...} )`</dt>
+<dt><code>defer.push( {p:... , h:... , o:...} )</code></dt>
 <dd>The asynchronous way to defer your code, as if you were adding to an array.</dd>
-<dt>`defer.cancel( sequenceID )`</dt>
-<dd>Pass in the sequence ID from the non-asynchronous `defer()` method, and you can cancel a deferred block of code. This is not guaranteed to prevent execution, that depends on the runloop's whims.</dd>
-<dt>`defer.version()`</dt>
+<dt><code>defer.cancel( sequenceID )</code></dt>
+<dd>Pass in the sequence ID from the non-asynchronous <code>defer()</code> method, and you can cancel a deferred block of code. This is not guaranteed to prevent execution, that depends on the runloop's whims.</dd>
+<dt><code>defer.version()</code></dt>
 <dd>Returns a string of defer.js's version.</dd>
-<dt>`defer.isReady()`</dt>
+<dt><code>defer.isReady()</code></dt>
 <dd>Returns a boolean indicating whether the DOM is ready for manipulation.</dd>
 </dl>
 
@@ -108,12 +108,12 @@ Judiciously clearing your cache, along with manipulating your connection (I use 
     options: { timeout: 30000 , interval: 100 , onFail: function(){ alert("failed"); } }
 
 <dl>
-<dt>`timeout`</dt>
+<dt><code>timeout</code></dt>
 <dd>How long, in milliseconds, until defer.js gives up on running your handler. The default is 15000ms (15 seconds).</dd>
-<dt>`interval`</dt>
+<dt><code>interval</code></dt>
 <dd>How long, in milliseconds, between attempts to validate your predicate. The default is 50ms.</dd>
-<dt>`onFail`</dt>
-<dd>Your very own custom failure handler. If deferred your code within a closure, you can use your own references and variables in here. Note that `this` isn't safe to use here.</dd>
+<dt><code>onFail</code></dt>
+<dd>Your very own custom failure handler. If deferred your code within a closure, you can use your own references and variables in here. Note that <code>this</code> isn't safe to use here.</dd>
 </dl>
 
 ## Sugar ##
@@ -123,14 +123,14 @@ There's *more?*
 defer.js uses a few small helper functions, which have been externalized for your convenience.
 
 <dl>
-<dt>`defer.log()`<dt>
-<dd>This is a safe way to reference console.log, even in browsers that don't support the console. If you're using a production version of defer.js, your logs go straight to `\dev\null`. If you use the debug version, errors will route correctly to the browser's JS console. Easy.</dd>
-<dt>`defer.isNil( objToTest )`<dt>
-<dd>Test if the first parameter is `undefined` or `null`. Returns `false` if it's a dud.</dd>
-<dt>`defer.isFunction( functionToTest )`<dt>
-<dd>Test if the first parameter is a usable function. Returns `false` if not.</dd>
-<dt>`defer.forOwnIn( context , dictionary , handler )`<dt>
-<dd>Use this for testing every property on a custom dictionary/hash object without typing the whole `hasOwnProperty` stuff. The `context` is `this`, and `dictionary` is your object. The function you pass to `handler` has two parameters, `key` and `value`. Example:
+<dt><code>defer.log()</code><dt>
+<dd>This is a safe way to reference console.log, even in browsers that don't support the console. If you're using a production version of defer.js, your logs go straight to <code>\dev\null</code>. If you use the debug version, errors will route correctly to the browser's JS console. Easy.</dd>
+<dt><code>defer.isNil( objToTest )</code><dt>
+<dd>Test if the first parameter is <code>undefined</code> or <code>null</code>. Returns <code>false</code> if it's a dud.</dd>
+<dt><code>defer.isFunction( functionToTest )</code><dt>
+<dd>Test if the first parameter is a usable function. Returns <code>false</code> if not.</dd>
+<dt><code>defer.forOwnIn( context , dictionary , handler )</code><dt>
+<dd>Use this for testing every property on a custom dictionary/hash object without typing the whole <code>hasOwnProperty</code> stuff. The <code>context</code> is <code>this</code>, and <code>dictionary</code> is your object. The function you pass to <code>handler</code> has two parameters, <code>key</code> and <code>value</code>. Example:
 <code>
     defer.forOwnIn( 
         this ,                                                // context
@@ -141,8 +141,8 @@ defer.js uses a few small helper functions, which have been externalized for you
     );
 </code>
 </dd>
-<dt>`defer.appendScript( src , async )`<dt>
-<dd>If you want to load code asynchronously, in code, use this. It simply attaches a `&lt;script&gt;` tag to the end of the page's body. The `async` parameter accepts either `async` or `defer`.</dd>
+<dt><code>defer.appendScript( src , async )</code><dt>
+<dd>If you want to load code asynchronously, in code, use this. It simply attaches a <code>&lt;script&gt;</code> tag to the end of the page's body. The <code>async</code> parameter accepts either <code>async</code> or <code>defer</code>.</dd>
 </dl>
 
 ## License, Copyright  &amp; Trademark ##
