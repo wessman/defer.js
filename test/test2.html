@@ -186,7 +186,6 @@
 				text-align:	left;
 			}
 		</style>
-		<script type="text/javascript" async="async" src="defer.min.js"></script>
 	</head>
 	<body>
 		<div class="intro-text">
@@ -256,9 +255,11 @@
 		
 		<a href="test1.html" class="test-link">&#8592; deferred</a>
 		
+		
+		<script type="text/javascript" src="defer.min.js"></script>
 		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 		<script type="text/javascript">
-			jQuery( function(){
+			$(document).ready( function(){
 
 					var order = window.testloader.registerLoaded( "jquery-box" );
 					
