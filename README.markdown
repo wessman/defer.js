@@ -78,7 +78,7 @@ defer.js sure is. It loads code as soon as the DOM is manipulable, much like jQu
 
 One of the hazards in asynchronous script loading is creating a race condition. What if your code runs before the library it depends on? An error, and a broken page.
 
-As long as your predicate logic is sound, you'll never run afoul of an async-based race condition.
+As long as your predicate logic is sound, you'll never again run afoul of an async-based race condition.
 
 ## Compatibility? ##
 
