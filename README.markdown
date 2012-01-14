@@ -19,7 +19,7 @@ An example:
 
 ## Huh? ##
  * Load any script you'd like asynchronously, even libraries like jQuery
- * With all-async code, the 'meat' of your page will load faster, especially on mobile devices. Text and images don't have to wait for scripts before rendering.
+ * With all-async code, the 'meat' of your page will **load faster**, especially on mobile devices. Text and images don't have to wait for scripts before loading.
  * Put code on the page where you need to, even if that's *before your libraries!*
 
 ## Origin ##
