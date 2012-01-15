@@ -58,7 +58,7 @@ More or less, yes.
 
 defer.js uses a single global variable for everything: <code>window.defer</code>. If this code has been loaded, you can use it just as in the example above. If not, you can still use it right now.
 
-defer.js uses a variant on the abuse-an-array idea, but to a higher degree. Once defer.js loads, it runs all the things you've put into the array, *then it becomes the array*.
+defer.js uses a variant on the abuse-an-array idea, but to a higher degree. Once defer.js loads, it runs all the things you've put into the array, *then it becomes the array*.\*
 
     <script type="text/javascript">
         window.defer = window.defer || [];    // in case defer.js hasn't loaded yet
@@ -71,6 +71,8 @@ defer.js uses a variant on the abuse-an-array idea, but to a higher degree. Once
     <script type="text/javascript" async="async" src="defer.js"></script>
 
 Yes, that totally works.
+
+\* JS doesn't offer operator overloading, so <code>defer.push()</code> is the only way in which you'll interact with defer.js like an array. None of that bracket business.
 
 Note that we use <code>window.defer</code> instead of simply <code>defer</code>, since this works better inside of closures, and in certain browsers.
 
