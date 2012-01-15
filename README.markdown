@@ -92,7 +92,7 @@ That said, I assume no liability for the use of defer.js. Read the license for m
 
 Besides its sub-2kB download size, defer.js is very respectful of browser resources. defer.js only runs when you ask it to, it does not leave any timers or event handlers 'dangling' thereafter.
 
-As with all static scripts, be sure to set your cache-related headers correctly. Even 1kB is 1kb too much when it could be in cache.
+As with all static scripts, be sure to set your cache-related headers correctly. Even 1kB is 1kB too much when it could be in cache.
 
 ## Try it out ##
 
