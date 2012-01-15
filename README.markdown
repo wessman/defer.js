@@ -104,7 +104,7 @@ As with all static scripts, be sure to set your cache-related headers correctly.
 
 ## Try it out ##
 
-Want to see it in action, against loading an image and jQuery? [Test defer.js now!](http://wessman.github.com/deferjs/test/test0.html)
+Want to see it in action, against loading an image and jQuery? [Test defer.js now!](http://wessman.github.com/defer.js/test/test0.html)
 
 Pay special attention to the image load time &amp; order. Note that the load times for both defer.js and jQuery in these test pages are based on the DOM being ready. Use Webkit Inspector's Timeline or your browser's equivalent to verify the numbers yourself.
 
