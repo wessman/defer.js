@@ -98,9 +98,11 @@ As with all static scripts, be sure to set your cache-related headers correctly.
 
 Want to see it in action, against loading an image and jQuery? [Test defer.js now!](http://wessman.github.com/deferjs/test/test0.html)
 
-Pay special attention to the image load time &amp; order.
+Pay special attention to the image load time &amp; order. Note that the load times for both defer.js and jQuery in these test pages are based on the DOM being ready. Use Webkit Inspector's Timeline or your browser's equivalent to verify the numbers yourself.
 
 Judiciously clearing your cache, along with manipulating your connection (I use Network Link Conditioner) will give you a more complete picture of defer.js's performance.
+
+The benefits of defer.js are most pronounced on real pages, large ones, and on slower network links (like mobile).
 
 ## Methods ##
 
