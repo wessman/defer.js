@@ -22,6 +22,12 @@ An example:
  * With all-async code, the 'meat' of your page will **load faster**, especially on mobile devices. Text and images don't have to wait for scripts before loading.
  * Put code on the page where you need to, even if that's *before your libraries!*
 
+## Why async & deferred JS is important ##
+
+**Make pages feel faster.**
+
+Google's Page Speed documentation explains the benefits of [asynchronous](http://code.google.com/speed/page-speed/docs/rtt.html#PreferAsyncResources) and [deferred](http://code.google.com/speed/page-speed/docs/payload.html#DeferLoadingJS) loading in more technical detail.
+
 ## Origin ##
 
 A year ago, I was considering how Google Analytics stores data in-page  before its own code had loaded. If you've never seen it before, it looks like this:
