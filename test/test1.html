@@ -90,6 +90,23 @@
 				padding: 20px 20px 10px 20px;
 				text-align: center;
 			}
+			
+			.note
+			{
+				text-align: center;
+				margin: 0 10px 20px 10px;
+			}
+			
+			.note .note-inner
+			{
+				display: inline-block;
+				background: #4D2300;
+				border: 3px solid #E96A00;
+				-webkit-border-radius:	20px;
+				-moz-border-radius:		20px;
+				border-radius:			20px;
+				padding: 10px 20px;
+			}
 		
 			.loading-box
 			{
@@ -197,10 +214,20 @@
 	</head>
 	<body>
 		<div class="intro-text">
-			All external scripts (defer.js & jQuery.js) are loaded at the end of the &lt;head&gt; tag, asynchronously, thanks to defer.js.
-			<br />
-			All CSS & images are linked by HTML, not scripts.
+			<p>All external scripts (defer.js & jQuery.js) are loaded at the end of the &lt;head&gt; tag, asynchronously, thanks to defer.js.</p>
+
+			<p>All CSS & images are linked by HTML, not scripts.</p>
+			
+			<p>Load time numbers are just for reference, verify them yourself using Webkit Inspector or your browser's equivalent.</p>
 		</div>
+
+		<div class="note">
+			<div class="note-inner">
+			<p>Note how the image is requested at almost the same time as the scripts, leading to a far more responsive page.</p>
+			<p>In total page load time, this is by far the fastest method to load a responsive page and its scripts.</p>
+			</div>
+		</div>
+		
 		<div class="loading-box" id="defer-box">
 			<span class="loading-box-text">defer.js</span>
 			<!--

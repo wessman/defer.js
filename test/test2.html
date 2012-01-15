@@ -89,6 +89,23 @@
 				padding: 20px 20px 10px 20px;
 				text-align: center;
 			}
+			
+			.note
+			{
+				text-align: center;
+				margin: 0 10px 20px 10px;
+			}
+			
+			.note .note-inner
+			{
+				display: inline-block;
+				background: #4D2300;
+				border: 3px solid #E96A00;
+				-webkit-border-radius:	20px;
+				-moz-border-radius:		20px;
+				border-radius:			20px;
+				padding: 10px 20px;
+			}
 		
 			.loading-box
 			{
@@ -194,9 +211,17 @@
 	</head>
 	<body>
 		<div class="intro-text">
-			Only the defer.js test relies on defer.js, which is loaded asynchronously. jQuery is loaded at the end of the &lt;body&gt; tag, synchronously.
-			<br />
-			All CSS & images are linked by HTML, not scripts.
+			<p>Only the defer.js test relies on defer.js, which is loaded asynchronously. jQuery is loaded synchronously. All external scripts are loaded at the end of the &lt;body&gt; tag, </p>
+
+			<p>All CSS & images are linked by HTML, not scripts.</p>
+			
+			<p>Load time numbers are just for reference, verify them yourself using Webkit Inspector or your browser's equivalent.</p>
+		</div>
+		
+		<div class="note">
+			<div class="note-inner">
+			<p>Note how the image is requested <em>before</em> the scripts, making the page more responsive. Also note that the page must wait for jQuery.js to load before the <code>DOMContentLoaded</code> event is fired.</p>
+			</div>
 		</div>
 		
 		<div class="loading-box" id="defer-box">
