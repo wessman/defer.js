@@ -88,6 +88,12 @@ If it's a browser, it'll work. defer.js has been tested on every browser I can g
 
 That said, I assume no liability for the use of defer.js. Read the license for more details.
 
+## Resources ##
+
+Besides its sub-2kB download size, defer.js is very respectful of browser resources. defer.js only runs when you ask it to, it does not leave any timers or event handlers 'dangling' thereafter.
+
+As with all static scripts, be sure to set your cache-related headers correctly. Even 1kB is 1kb too much when it could be in cache.
+
 ## Try it out ##
 
 Want to see it in action, against loading an image and jQuery? [Test defer.js now!](http://wessman.github.com/deferjs/test/test0.html)
