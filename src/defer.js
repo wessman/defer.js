@@ -178,7 +178,7 @@ var deferErrors =
 	{
 		for( var key in dictionary )
 		{
-			if( dictionary.hasOwnProperty(key) )
+			if( Object.prototype.hasOwnProperty.call( dictionary , key ) === YES )
 			{
 				handler.call( context , key , dictionary[key] );
 			};
