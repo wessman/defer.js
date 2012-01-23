@@ -56,6 +56,12 @@ var deferErrors =
 	var _debug = NO;
 	
 	/**
+		@const
+		@type {boolean}
+	*/
+	var _robustIEReady = YES;
+	
+	/**
 		@const 
 		@type {string}
 	*/
@@ -588,26 +594,29 @@ var deferErrors =
 				// A fallback to window.onload, that will always work
 				window.attachEvent( kLoad, handleReady );	
 				
-				// If IE and not a frame
-				// continually check to see if the document is ready
-				var toplevel = NO;
-	
-				try {
-					toplevel = window.frameElement === null;
-				} catch(e) {;}
-				
-				// IE Scroll hack
-				if( toplevel === YES )
+				if( _robustIEReady === YES )
 				{
-					defer( 
-						function IEScrollHackPredicate(){
-							doc.documentElement.doScroll("left");
-							/* failure of the line above will result in a failed predicate test */
-							return YES;
-						} , 
-						function IEScrollHackHandler(){ setReady(YES); } , 
-						{ testDOMReady:NO }
-					);
+					// If IE and not a frame
+					// continually check to see if the document is ready
+					var toplevel = NO;
+		
+					try {
+						toplevel = window.frameElement === null;
+					} catch(e) {;}
+					
+					// IE Scroll hack
+					if( toplevel === YES )
+					{
+						defer( 
+							function IEScrollHackPredicate(){
+								doc.documentElement.doScroll("left");
+								/* failure of the line above will result in a failed predicate test */
+								return YES;
+							} , 
+							function IEScrollHackHandler(){ setReady(YES); } , 
+							{ testDOMReady:NO }
+						);
+					};
 				};
 			};
 		};
