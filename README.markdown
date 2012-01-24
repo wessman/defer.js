@@ -342,7 +342,7 @@ Since then, a number of others JS loaders have popped up. Here's a little compar
 		<tr>
 			<td><a href="http://jupiterjs.com/news/stealjs-script-manager">Steal</a></td>
 			<td>4kB</td>
-			<td><span title="No licence specified">??</span></td>
+			<td>none specified</td>
 			<td>No</td>
 			<td>Yes</td>
 			<td>Yes</td>
