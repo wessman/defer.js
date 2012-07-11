@@ -19,6 +19,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * v.1.1
  */
 
 /*  // This error struct exists for developer documentation,
@@ -35,6 +37,15 @@ var deferErrors =
 };*/
 
 
+/**
+	@define {boolean}
+*/
+var _debug = false;
+
+/**
+	@define {boolean}
+*/
+var _robustIEReady = true;
 
 (function(window,deferQueue){
 	/**
@@ -48,24 +59,18 @@ var deferErrors =
 		@type {boolean}
 	*/
 	var NO = false;
-
-	/**
-		@const 
-		@type {boolean}
-	*/
-	var _debug = NO;
 	
 	/**
-		@const
-		@type {boolean}
+		@const 
+		@type {undefined}
 	*/
-	var _robustIEReady = YES;
+	var undefined;
 	
 	/**
 		@const 
 		@type {string}
 	*/
-	var kVersion = "1.0";
+	var kVersion = "1.1";
 	
 	/**
 		@const 
@@ -190,6 +195,57 @@ var deferErrors =
 		};
 	};
 	
+	/**
+		@param {*} obj
+		@param {string} type
+		@param {*} listener
+		@param {boolean} capture
+		@return {boolean}
+	*/
+	function addEventListener( obj , type , listener , capture )
+	{
+		var useCapture = !!capture;
+	
+		if( !isNil( obj.addEventListener ) )
+		{
+			// WebKit, Moz, etc.
+			obj.addEventListener( type , listener , useCapture );
+		} else if (_isIE) {
+			useCapture = NO;
+			obj.attachEvent( type , listener );
+		};
+		
+		return useCapture;
+	};
+	
+	
+	/**
+		@param {*} obj
+		@param {string} type
+		@param {*} listener
+		@param {boolean} capture
+		@return {boolean}
+	*/
+	function removeEventListener( obj , type , listener , capture )
+	{	
+		var useCapture = !!capture;
+		
+		if( !isNil( obj.removeEventListener ) )
+		{
+			// WebKit, Moz, etc.
+			obj.addEventListener( type , listener , useCapture );
+		} else if (_isIE) {
+			useCapture = NO;
+			obj.detachEvent( type , listener );
+		};
+		
+		return useCapture;
+	};
+	
+	/**
+		@param {string} src
+		@param {string} async
+	*/
 	function appendScript( src , async )
 	{
 		var script	= document.createElement( "script" );
@@ -216,7 +272,7 @@ var deferErrors =
 		@param {Object|string} predicate
 		@param {Object} handler
 		@param {Object} options
-		return {number} The defer instance id
+		@return {number} The defer instance id
 	*/
 	function defer( predicate , handler , options )
 	{
@@ -233,6 +289,11 @@ var deferErrors =
 		};
 	};
 	
+	/**
+		@protected
+		@param {number} deferID
+		@return {boolean}
+	*/
 	function cancelInstance( deferID )
 	{
 		log("defer.cancel");
@@ -292,10 +353,12 @@ var deferErrors =
 		
 			if( shouldThrowError === YES )
 			{
+				//log( func.toString() , e );
 				var err = new Error(errorText);
 				err.originalError = e;
-				log( func.toString() , e );
-				throw err;
+				//log( func.toString() , e , func );
+				//throw err;
+				throw e;
 			};
 		};
 		
@@ -437,7 +500,7 @@ var deferErrors =
 					log( "setTimeout" );
 				};
 			} else {
-				log("timed out");
+				log("timed out" , this);
 				
 				var failedHandler = self.options["onFail"];
 				
@@ -458,12 +521,14 @@ var deferErrors =
 		if( !isNaN(this.timeoutID) ) window.clearTimeout(this.timeoutID);
 	};
 	
-	defer["isFunction"]		= isFunction;
-	defer["isNil"]			= isNil;
-	defer["log"]			= log;
-	defer["forOwnIn"]		= forIn;
-	defer["cancel"]			= cancelInstance;
-	defer["appendScript"]	= appendScript;
+	defer["isFunction"]			= isFunction;
+	defer["isNil"]				= isNil;
+	defer["log"]				= log;
+	defer["forOwnIn"]			= forIn;
+	defer["cancel"]				= cancelInstance;
+	defer["appendScript"]		= appendScript;
+	defer["addEventListener"]	= addEventListener;
+	defer["removeEventListener"]= removeEventListener;
 	
 	
 	/*#pragma mark readystate */
@@ -565,34 +630,26 @@ var deferErrors =
 			{
 				// clean up event handlers
 				
-				if ( !!(doc.addEventListener) )			// Moz/Opera/Webkit
-				{
-					doc.removeEventListener( kDOMContentLoaded , handleReady , NO );
-					window.removeEventListener( kLoad , handleReady , NO );
-				} else if ( _isIE ) {		// IE
-					doc.detachEvent( kOnReadyStateChange , handleReady );
-					window.detachEvent( kLoad , handleReady );
-				};
+				removeEventListener( doc , ( !!_isIE ? kDOMContentLoaded : kOnReadyStateChange ) , handleReady , NO );
+				removeEventListener( window , kLoad , handleReady , NO );
 			};
 				
 			return returnValue;
 		} else {	// add event handlers
+		
+			// A fallback to window.onload, that will always work
+			addEventListener( window , kLoad , handleReady , NO );
+		
 			// Mozilla, Opera and webkit nightlies currently support this event
 			if ( !!(doc.addEventListener) ) {
 				// Use the handy event callback
-				doc.addEventListener( kDOMContentLoaded, handleReady, NO );
-	
-				// A fallback to window.onload, that will always work
-				window.addEventListener( kLoad, handleReady, NO );
+				addEventListener( doc , kDOMContentLoaded , handleReady , NO );
 	
 			// If IE event model is used
 			} else if ( _isIE ) {
 				// ensure firing before onload,
 				// maybe late but safe also for iframes
-				doc.attachEvent( kOnReadyStateChange, handleReady );
-	
-				// A fallback to window.onload, that will always work
-				window.attachEvent( kLoad, handleReady );	
+				addEventListener( doc , kOnReadyStateChange , handleReady , NO );
 				
 				if( _robustIEReady === YES )
 				{
