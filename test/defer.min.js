@@ -1,0 +1,26 @@
+/*
+ "defer.js" is a trademark of Ian J. Wessman
+
+ Copyright 2011-2012 Ian J. Wessman
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ v.1.1
+*/
+(function(h,i){var d=!0,f=null,g=!1;function j(a){return!l(a)&&a instanceof Object&&(l(a.__proto__)?!l(a.call):!l(a.__proto__.call))}function m(a,b,c){for(var e in b)Object.prototype.hasOwnProperty.call(b,e)===d&&c.call(a,e,b[e])}function n(a,b,c,e){e=!!e;l(a.addEventListener)?o&&(e=g,a.attachEvent(b,c)):a.addEventListener(b,c,e);return e}function p(a,b,c,e){e=!!e;l(a.removeEventListener)?o&&(e=g,a.detachEvent(b,c)):a.addEventListener(b,c,e);return e}function q(a,b,c){a=new r(a,b,c);if(a.a===d)return 0;
+s[a.id]=a;return a.id}function t(a){h.setTimeout(function(){s[a]=f;delete s[a]},0)}function u(){return d}function v(a,b,c,e){var k=g;l(b)&&(b=h);try{k=a.call(b)}catch(x){if(c===d)throw Error(e).k=x,x;}return k}function r(a,b,c){if("ready"===a)a=u;else if(!j(a))throw Error("defer:01");if(!j(b))throw Error("defer:02");var e=c||{};this.id=w++;this.i=a;this.g=b;e.e=c.interval||50;e.timeout=c.timeout||15E3;this.options=e;this.c=l(c.testDOMReady)?d:!!c.testDOMReady;this.d=this.b=f;this.j=this.a=g;var k;
+this.c===d&&y===d&&(k=this.test());k===d?this.f(k):this.setTimeout();delete k}function z(){m(this,s,function(a,b){!l(b)&&b.a===g&&b.j===d&&b.setTimeout()})}function A(a){var b=!!y;a===d&&(y=d,b!=y&&z());delete b;return y}function B(a){var b=h.document;if(y===d||"complete"===b.readyState)return d;if(!l(a)&&!l(a.type)){var c=g;switch(a.type){case "DOMContentLoaded":case "load":c=a.returnValue===d;break;case "readystatechange":"complete"===a.readyState&&(c=d)}c===d&&(p(b,o?"DOMContentLoaded":"onreadystatechange",
+B,g),p(h,"load",B,g));return c}n(h,"load",B,g);if(b.addEventListener)n(b,"DOMContentLoaded",B,g);else if(o){n(b,"onreadystatechange",B,g);a=g;try{a=h.frameElement===f}catch(e){}a===d&&q(function(){b.documentElement.doScroll("left");return d},function(){A(d)},{c:g})}return g}function C(a){var b=g,c,e;if("ready"===a.predicate||"ready"===a.p)c="ready";else if(l(a.predicate)){if(l(a.p))return b;c=a.p}else c=a.predicate;if(l(a.handler)){if(l(a.h))return b;e=a.h}else e=a.handler;if(l(a.options)){if(l(a.o))return b;
+a=a.o}else a=a.options;q(c,e,a);return d}var s={},w=100,y=g,o=!!h.document.detachEvent;function l(a){return void 0===a||a===f}r.prototype.test=function(){return v(this.i,f,g,"")};r.prototype.f=function(a){if(a===d){this.clearTimeout();try{v(this.g,this.options.handlerContext,d,"defer:04:"+this.id)}catch(b){throw b;}this.a=d;t(this.id)}else this.clearTimeout(),this.b=this.setTimeout()};r.prototype.setTimeout=function(){var a=this,b=a.options.timeout;void 0!=b&&!isNaN(b)&&((a.d===f&&(a.d=+new Date+
+b),a.d>+new Date)?a.a===g&&(a.b=h.setTimeout(function(){a.f(a.test())},a.options.e)):(b=a.options.onFail,j(b)&&v(b,f,g,""),t(a.id)))};r.prototype.clearTimeout=function(){isNaN(this.b)||h.clearTimeout(this.b)};q.isFunction=j;q.isNil=l;q.log=function(){};q.forOwnIn=m;q.cancel=function(a){var b=g,a=s[a];l(a)||(b=a.a=d);return b};q.appendScript=function(a,b){var c=document.createElement("script");if(c){c.type="text/javascript";c.src=a;if(!l(b)&&("async"===b||"defer"===b))c[b]=b;document.body.appendChild(c)}};
+q.addEventListener=n;q.removeEventListener=p;function D(a){return y===d?d:A(B(a))}q.isReady=D;q.version=function(){return"1.1"};q(function(){return!!h.document},D,{e:10,c:g});for(i=i||[];0<i.length;)for(var E=0;E<i.length;E++)C(i.shift());q.push=C;h.defer=q})(window,window.defer);
